@@ -15,6 +15,12 @@ public class MatchHistoryService {
     private static List<Matches> matchesList1 = new ArrayList<>();
     private static List<Matches> matchesList2 = new ArrayList<>();
 
+
+    /**
+     *
+     * Static/fixed input for the default APIs
+     *
+     **/
     static {
         Matches match0 = new Matches("Match 1", "Bind", Arrays.asList("Aceu", "zeus", "eggoe", "Kimchi", "trippy"), 19, "Win", 19);
         Matches match1 = new Matches("Match 2", "Ascent", Arrays.asList("FrostStrix", "blackfires505", "AyDitto", "Kimchi", "darkwest03"), 23, "Lose", -17);
@@ -44,11 +50,18 @@ public class MatchHistoryService {
         matchHistoryArrayList.add(matchHistory2);
     }
 
-
+    /**
+     * Basically grabs every single information in the static API
+     */
     public List<MatchHistory> retrieveAllMatches() {
         return matchHistoryArrayList;
     }
 
+    /**
+     * retrieves matchHistory through the ID taken from the URL
+     * @param matchHistoryId
+     * @return
+     */
     public static MatchHistory retrieveMatchHistoryById(String matchHistoryId) {
         Predicate<? super MatchHistory> predicate = matchHistory -> matchHistory.getId().equalsIgnoreCase(matchHistoryId);
         Optional<MatchHistory> matchHistoryOptional= matchHistoryArrayList.stream().filter(predicate).findFirst();
@@ -59,17 +72,25 @@ public class MatchHistoryService {
         return matchHistoryOptional.get();
     }
 
+    /**
+     * Lists the matches from the parameter matchHistoryId
+     * @param matchHistoryId
+     * @return
+     */
     public List<Matches> retrieveAllMatchesInHistory(String matchHistoryId) {
-
         MatchHistory matchHistory = retrieveMatchHistoryById(matchHistoryId);
-        System.out.println(matchHistory);
         if(matchHistory == null){
             return null;
         }
-        System.out.println(matchHistory.getPoints());
         return matchHistory.getMatches();
     }
 
+    /**
+     * deepest part of the API, specify which match to find and analyze
+     * @param matchHistoryId
+     * @param matchesId
+     * @return the specific match
+     */
     public static Matches retrieveSpecificMatches(String matchHistoryId, String matchesId) {
         MatchHistory matchHistory = retrieveMatchHistoryById(matchHistoryId);
         if(matchHistory == null){
