@@ -18,14 +18,6 @@ public class MatchHistory {
         this.matches = matches;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getId() {
         return id;
     }
@@ -34,20 +26,16 @@ public class MatchHistory {
         this.id = id;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     public int getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public List<Matches> getMatches() {

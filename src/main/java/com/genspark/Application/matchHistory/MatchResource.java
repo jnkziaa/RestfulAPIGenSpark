@@ -1,12 +1,14 @@
 package com.genspark.Application.matchHistory;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class MatchResource {
@@ -30,19 +32,18 @@ public class MatchResource {
     }
 
     @RequestMapping("/matchHistory/{matchHistoryId}")
-    public MatchHistory retrieveMatchHistory(@PathVariable String matchHistoryId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase();
-        MatchHistory matchHistory = MatchHistoryService.retrieveMatchHistoryById(matchHistoryId);
-        if(matchHistory==null){
+    public MatchHistory retrieveHistory(@PathVariable String matchHistoryId){
+        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        MatchHistory matchHistory = matchHistoryService.retrieveMatchHistoryById(matchHistoryId);
+        if(matchHistory == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-
         return matchHistory;
     }
 
     @RequestMapping("/matchHistory/{matchHistoryId}/matches")
     public List<Matches> retrieveAllMatches(@PathVariable String matchHistoryId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase();
+        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
         List<Matches> matches = matchHistoryService.retrieveAllMatchesInHistory(matchHistoryId);
         if(matches == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -54,15 +55,24 @@ public class MatchResource {
 
     @RequestMapping("/matchHistory/{matchHistoryId}/matches/{matchesId}")
     public Matches retrieveSpecificMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase();
+        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
         matchesId =  matchesId.replace("_", " ").toLowerCase();
-
-        Matches matches = MatchHistoryService.retrieveSpecificMatches(matchHistoryId, matchesId);
+        Matches matches = matchHistoryService.retrieveSpecificMatch(matchHistoryId, matchesId);
         if(matches == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
         return matches;
+    }
+
+
+    @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches", method = RequestMethod.POST)
+    public ResponseEntity<Object> addNewMatches(@PathVariable String matchHistoryId, @RequestBody Matches matches){
+        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        String matchesId = matchHistoryService.addNewMatches(matchHistoryId, matches);
+        matchesId = matchesId.replace(" ", "_").toLowerCase();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matchesId}").buildAndExpand(matchesId).toUri();
+        return ResponseEntity.created(location).build();
 
     }
 

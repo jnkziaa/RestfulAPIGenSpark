@@ -41,32 +41,16 @@ public class Matches {
         return map;
     }
 
-    public void setMap(String map) {
-        this.map = map;
-    }
-
     public List<String> getTeamMembers() {
         return teamMembers;
-    }
-
-    public void setTeamMembers(List<String> teamMembers) {
-        this.teamMembers = teamMembers;
     }
 
     public int getRoundsPlayed() {
         return roundsPlayed;
     }
 
-    public void setRoundsPlayed(int roundsPlayed) {
-        this.roundsPlayed = roundsPlayed;
-    }
-
     public String getResults() {
         return results;
-    }
-
-    public void setResults(String results) {
-        this.results = results;
     }
 
     @Override
