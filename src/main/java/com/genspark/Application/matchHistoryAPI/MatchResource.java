@@ -75,9 +75,21 @@ public class MatchResource {
 
     }
 
+    /**
+     * notes.txt
+     * @param matchHistoryId
+     * @param matchesId
+     * @return
+     */
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Object> deleteSpecificMatch(@PathVariable String matchHistoryId, @RequestBody String matchesId){
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Object> deleteSpecificMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId){
+        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        matchesId = matchesId.replace("_", " ").toLowerCase();
+        String response = matchHistoryService.deleteSpecificMatch(matchHistoryId, matchesId);
+        if(response==null){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(200).build(); //refer to notes.txt for number code definition.
     }
 
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.PUT)

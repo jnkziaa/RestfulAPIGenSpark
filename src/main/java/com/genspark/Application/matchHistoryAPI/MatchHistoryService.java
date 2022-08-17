@@ -2,10 +2,7 @@ package com.genspark.Application.matchHistoryAPI;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Component
@@ -41,10 +38,6 @@ public class MatchHistoryService {
         totalPoints = matchesList2.stream().map(a->a.getPointsGained()).reduce(0, Integer::sum);
         MatchHistory matchHistory2 = new MatchHistory("Player 2","Ninjin", totalPoints, "Initiator", matchesList2);
         matchHistoryArrayList.add(matchHistory2);
-    }
-
-    public static void setMatchesList2(List<Matches> matchesList2) {
-        MatchHistoryService.matchesList2 = matchesList2;
     }
 
 
@@ -129,4 +122,25 @@ public class MatchHistoryService {
     }
 
 
+    /**
+     *
+     * @param matchHistoryId
+     * @param matchesId
+     * @return
+     */
+    public String deleteSpecificMatch(String matchHistoryId, String matchesId) {
+        List<Matches> matchesListInMethod = retrieveAllMatchesInHistory(matchHistoryId);
+        if(matchesListInMethod == null){
+            return null;
+        }
+        Predicate<Matches> predicate = match -> match.getId().equalsIgnoreCase(matchesId);
+        boolean removedMatch = matchesListInMethod.removeIf(predicate);
+        if(!removedMatch){
+
+            return null;
+        }
+
+        return matchesId;
+
+    }
 }

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f3a9732-35a5-4a4c-8bc4-580f904242f7" name="Changes" comment="added RequestMethod.POST">
+    <list default="true" id="5f3a9732-35a5-4a4c-8bc4-580f904242f7" name="Changes" comment="add Request methods delete and put tomorrow.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistory/MatchHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistory/MatchHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistory/MatchResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistory/Matches.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/Matches.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistory/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchResource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +151,8 @@
       <workItem from="1660630842416" duration="3079000" />
       <workItem from="1660666284311" duration="3308000" />
       <workItem from="1660669725689" duration="1521000" />
-      <workItem from="1660671270020" duration="3754000" />
+      <workItem from="1660671270020" duration="4159000" />
+      <workItem from="1660714876256" duration="3165000" />
     </task>
     <task id="LOCAL-00001" summary="In progress">
       <created>1660605795261</created>
@@ -184,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1660672971682</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added RequestMethod.POST">
+      <created>1660714204483</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660714204483</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add Request methods delete and put tomorrow.">
+      <created>1660714500391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660714500391</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,6 +217,7 @@
     <MESSAGE value="In progress" />
     <MESSAGE value="finished adding and finishing all the mappings, will do post, delete, and put tomorrow." />
     <MESSAGE value="added RequestMethod.POST" />
-    <option name="LAST_COMMIT_MESSAGE" value="added RequestMethod.POST" />
+    <MESSAGE value="add Request methods delete and put tomorrow." />
+    <option name="LAST_COMMIT_MESSAGE" value="add Request methods delete and put tomorrow." />
   </component>
 </project>
