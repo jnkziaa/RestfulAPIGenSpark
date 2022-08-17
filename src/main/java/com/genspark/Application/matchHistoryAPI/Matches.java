@@ -1,4 +1,4 @@
-package com.genspark.Application.matchHistory;
+package com.genspark.Application.matchHistoryAPI;
 
 import java.util.List;
 

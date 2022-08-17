@@ -1,4 +1,4 @@
-package com.genspark.Application.matchHistory;
+package com.genspark.Application.matchHistoryAPI;
 
 import java.util.List;
 
@@ -24,6 +24,10 @@ public class MatchHistory {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getUserName() {

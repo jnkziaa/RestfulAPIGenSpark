@@ -1,9 +1,7 @@
-package com.genspark.Application.matchHistory;
+package com.genspark.Application.matchHistoryAPI;
 
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +14,6 @@ public class MatchHistoryService {
     private static List<MatchHistory> matchHistoryArrayList = new ArrayList<>();
     private static List<Matches> matchesList;
     private static List<Matches> matchesList2;
-
 
 
     /**
@@ -63,8 +60,6 @@ public class MatchHistoryService {
      * @param matchHistoryId
      * @return
      */
-
-
     public MatchHistory retrieveMatchHistoryById(String matchHistoryId) {
         Predicate<? super MatchHistory> predicate = matchHistory -> matchHistory.getId().equalsIgnoreCase(matchHistoryId);
         Optional<MatchHistory> matchHistoryOptional= matchHistoryArrayList.stream().filter(predicate).findFirst();
@@ -110,12 +105,26 @@ public class MatchHistoryService {
         return optionalMatches.get();
     }
 
+    /**
+     * modifies points each time method is called.
+     * @param matchHistoryId
+     * @param matches
+     * @return string version of the current number of matches in the API
+     */
     public String addNewMatches(String matchHistoryId, Matches matches) {
         List<Matches> newMatchList = retrieveAllMatchesInHistory(matchHistoryId);
         int idTracker = newMatchList.size() + 1;
         String actualMatchId = "Match " + idTracker;
         matches.setId(actualMatchId);
         newMatchList.add(matches);
+
+        int newPoints = newMatchList.stream().map(a->a.getPointsGained()).reduce(0, Integer::sum); //sum of the current total points of all the matches
+
+        MatchHistory matchHistory = retrieveMatchHistoryById(matchHistoryId);
+        if(matchHistory == null){
+            return null;
+        }
+        matchHistory.setPoints(newPoints); //the points api is dynamic therefore each add, points are modified.
         return actualMatchId;
     }
 
