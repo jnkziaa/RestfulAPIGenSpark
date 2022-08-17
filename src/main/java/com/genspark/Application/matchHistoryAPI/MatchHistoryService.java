@@ -25,7 +25,7 @@ public class MatchHistoryService {
         Matches match3 = new Matches("Match 4", "Icebox", Arrays.asList("hummy", "resue", "acid", "Kimchi", "northwest"), 15, "Win", 21);
         Matches match4 = new Matches("Match 5", "Pearl", Arrays.asList("sera", "ares", "lumia", "Kimchi", "huane"), 32, "Win", 25);
         matchesList = new ArrayList<>(Arrays.asList(match0, match1, match2, match3, match4));
-        int totalPoints = matchesList.stream().map(a->a.getPointsGained()).reduce(0, Integer::sum);
+        int totalPoints = matchesList.stream().map(Matches::getPointsGained).reduce(0, Integer::sum);
         MatchHistory matchHistory1 = new MatchHistory("Player 1","Kimchi", totalPoints, "Sentinel", matchesList);
         matchHistoryArrayList.add(matchHistory1);
 
@@ -35,7 +35,7 @@ public class MatchHistoryService {
         Matches match8 = new Matches("Match 4", "Breeze", Arrays.asList("nuers", "hytsta", "dica", "Ninjin", "westLost"), 15, "Win", 21);
         Matches match9 = new Matches("Match 5", "Fracture", Arrays.asList("lostaw12", "reasff", "mioasf", "yuanes", "Ninjin"), 32, "Win", 25);
         matchesList2 = new ArrayList<>(Arrays.asList(match5, match6, match7, match8, match9));
-        totalPoints = matchesList2.stream().map(a->a.getPointsGained()).reduce(0, Integer::sum);
+        totalPoints = matchesList2.stream().map(Matches::getPointsGained).reduce(0, Integer::sum);
         MatchHistory matchHistory2 = new MatchHistory("Player 2","Ninjin", totalPoints, "Initiator", matchesList2);
         matchHistoryArrayList.add(matchHistory2);
     }
@@ -111,7 +111,7 @@ public class MatchHistoryService {
         matches.setId(actualMatchId);
         newMatchList.add(matches);
 
-        int newPoints = newMatchList.stream().map(a->a.getPointsGained()).reduce(0, Integer::sum); //sum of the current total points of all the matches
+        int newPoints = newMatchList.stream().map(Matches::getPointsGained).reduce(0, Integer::sum); //sum of the current total points of all the matches
 
         MatchHistory matchHistory = retrieveMatchHistoryById(matchHistoryId);
         if(matchHistory == null){
@@ -142,5 +142,13 @@ public class MatchHistoryService {
 
         return matchesId;
 
+    }
+
+    public void modifySpecificMatch(String matchHistoryId, String matchesId, Matches matches) {
+        List<Matches> matchesListInMethod = retrieveAllMatchesInHistory(matchHistoryId);
+        System.out.println(matchesListInMethod);
+        Predicate<Matches> predicate = match -> match.getId().equalsIgnoreCase(matchesId);
+        matchesListInMethod.removeIf(predicate);
+        matchesListInMethod.add(matches);
     }
 }

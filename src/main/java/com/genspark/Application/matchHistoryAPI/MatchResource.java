@@ -32,7 +32,7 @@ public class MatchResource {
 
     @RequestMapping("/matchHistory/{matchHistoryId}")
     public MatchHistory retrieveHistory(@PathVariable String matchHistoryId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
         MatchHistory matchHistory = matchHistoryService.retrieveMatchHistoryById(matchHistoryId);
         if(matchHistory == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -42,7 +42,7 @@ public class MatchResource {
 
     @RequestMapping("/matchHistory/{matchHistoryId}/matches")
     public List<Matches> retrieveAllMatches(@PathVariable String matchHistoryId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
         List<Matches> matches = matchHistoryService.retrieveAllMatchesInHistory(matchHistoryId);
         if(matches == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -54,8 +54,8 @@ public class MatchResource {
 
     @RequestMapping("/matchHistory/{matchHistoryId}/matches/{matchesId}")
     public Matches retrieveSpecificMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
-        matchesId =  matchesId.replace("_", " ").toLowerCase();
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
+        matchesId =  stringModifier(matchesId);
         Matches matches = matchHistoryService.retrieveSpecificMatch(matchHistoryId, matchesId);
         if(matches == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -67,9 +67,9 @@ public class MatchResource {
 
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches", method = RequestMethod.POST)
     public ResponseEntity<Object> addNewMatches(@PathVariable String matchHistoryId, @RequestBody Matches matches){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
         String matchesId = matchHistoryService.addNewMatches(matchHistoryId, matches);
-        matchesId = matchesId.replace(" ", "_").toLowerCase();
+        matchesId = stringModifier(matchesId);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{matchesId}").buildAndExpand(matchesId).toUri();
         return ResponseEntity.created(location).build();
 
@@ -83,8 +83,8 @@ public class MatchResource {
      */
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteSpecificMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId){
-        matchHistoryId =  matchHistoryId.replace("_", " ").toLowerCase(); //turns "player_1" to "player 1" for aesthetics
-        matchesId = matchesId.replace("_", " ").toLowerCase();
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
+        matchesId = stringModifier(matchesId);
         String response = matchHistoryService.deleteSpecificMatch(matchHistoryId, matchesId);
         if(response==null){
             return ResponseEntity.badRequest().build();
@@ -93,8 +93,14 @@ public class MatchResource {
     }
 
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> modSpecMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId, @RequestBody Matches matches){
-        return ResponseEntity.noContent().build();
+    public void modSpecMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId, @RequestBody Matches matches){
+        matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics
+        matchesId = stringModifier(matchesId);
+        matchHistoryService.modifySpecificMatch(matchHistoryId, matchesId, matches);
+    }
+
+    private String stringModifier(String input){
+        return input.replace("_", " ").toLowerCase();
     }
 
 }
