@@ -75,5 +75,14 @@ public class MatchResource {
 
     }
 
+    @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> deleteSpecificMatch(@PathVariable String matchHistoryId, @RequestBody String matchesId){
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.PUT)
+    public ResponseEntity<Object> modSpecMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId, @RequestBody Matches matches){
+        return ResponseEntity.noContent().build();
+    }
 
 }
