@@ -75,12 +75,6 @@ public class MatchResource {
 
     }
 
-    /**
-     * notes.txt
-     * @param matchHistoryId
-     * @param matchesId
-     * @return
-     */
     @RequestMapping(value = "/matchHistory/{matchHistoryId}/matches/{matchesId}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteSpecificMatch(@PathVariable String matchHistoryId, @PathVariable String matchesId){
         matchHistoryId =  stringModifier(matchHistoryId); //turns "player_1" to "player 1" for aesthetics

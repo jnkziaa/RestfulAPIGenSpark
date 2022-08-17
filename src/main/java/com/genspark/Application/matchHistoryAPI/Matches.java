@@ -9,7 +9,6 @@ public class Matches {
     private List<String> teamMembers;
     private int roundsPlayed;
     private String results;
-
     private int pointsGained;
 
     public int getPointsGained() {
@@ -28,6 +27,7 @@ public class Matches {
         this.results = results;
         this.pointsGained = pointsGained;
     }
+
 
     public String getId() {
         return id;

@@ -106,7 +106,7 @@ public class MatchHistoryService {
      */
     public String addNewMatches(String matchHistoryId, Matches matches) {
         List<Matches> newMatchList = retrieveAllMatchesInHistory(matchHistoryId);
-        int idTracker = newMatchList.size() + 1;
+        int idTracker = Integer.parseInt(newMatchList.get(newMatchList.size()-1).getId().substring(6,7)) + 1;
         String actualMatchId = "Match " + idTracker;
         matches.setId(actualMatchId);
         newMatchList.add(matches);
@@ -144,6 +144,12 @@ public class MatchHistoryService {
 
     }
 
+    /**
+     * updates or modifies a specific match
+     * @param matchHistoryId
+     * @param matchesId
+     * @param matches
+     */
     public void modifySpecificMatch(String matchHistoryId, String matchesId, Matches matches) {
         List<Matches> matchesListInMethod = retrieveAllMatchesInHistory(matchHistoryId);
         System.out.println(matchesListInMethod);

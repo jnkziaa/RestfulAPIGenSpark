@@ -10,6 +10,7 @@ public class MatchHistory {
     private String title;
     private List<Matches> matches;
 
+
     public MatchHistory(String id, String userName, int points, String title, List<Matches> matches) {
         this.id = id;
         this.userName = userName;
