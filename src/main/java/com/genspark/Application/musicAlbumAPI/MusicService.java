@@ -59,4 +59,63 @@ public class MusicService {
 
         return singerInMethod.getAlbums();
     }
+
+    public Album retrieveSpecificAlbum(String singerId, String albumId) {
+        List<Album> albumListInMethod = retrieveAllAlbums(singerId);
+        Predicate<? super Album> predicate = album -> album.getId().equalsIgnoreCase(albumId);
+        Optional<Album> optionalAlbum = albumListInMethod.stream().filter(predicate).findFirst();
+        if(optionalAlbum.isEmpty()){
+            return null;
+        }
+
+        return optionalAlbum.get();
+    }
+
+    public String addNewAlbum(String singerId, Album albumParam) {
+        List<Album> albumListInMethod = retrieveAllAlbums(singerId);
+        //System.out.println(albumListInMethod.get(albumListInMethod.size()-1).getId().substring(6,7));
+        int idTracker = Integer.parseInt(albumListInMethod.get(albumListInMethod.size()-1).getId().substring(6)) + 1;
+        String actualAlbumId = "Album " + idTracker;
+        //System.out.println(singerId + " " + actualAlbumId);
+        albumParam.setId(actualAlbumId);
+        albumListInMethod.add(albumParam);
+
+        /*for(int i = 0; i < albumListInMethod.size(); i++){
+            System.out.println(albumListInMethod.get(i));
+        }*/
+
+        Singer singer = retrieveSingerById(singerId);
+        if(singer == null){
+            return null;
+        }
+
+
+        return actualAlbumId;
+    }
+
+    public String deleteSpecificAlbum(String singerId, String albumId) {
+        List<Album> albumListInMethod = retrieveAllAlbums(singerId);
+        if(albumListInMethod.isEmpty()){
+            return null;
+        }
+
+        Predicate<? super Album> predicate = a->a.getId().equalsIgnoreCase(albumId);
+        boolean removed = albumListInMethod.removeIf(predicate);
+        if(removed == false){
+            return null;
+        }
+
+        return albumId;
+    }
+
+    public void modifySpeficAlbum(String singerId, String albumId, Album album) {
+        List<Album> albumListInMethod = retrieveAllAlbums(singerId);
+        Predicate<? super  Album> predicate = a->a.getId().equalsIgnoreCase(albumId);
+        albumListInMethod.removeIf(predicate);
+        albumListInMethod.add(album);
+
+        for(int i = 0; i < albumListInMethod.size(); i++){
+            System.out.println(albumListInMethod.get(i));
+        }
+    }
 }

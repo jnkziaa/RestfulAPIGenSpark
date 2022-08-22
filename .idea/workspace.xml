@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f3a9732-35a5-4a4c-8bc4-580f904242f7" name="Changes" comment="starting weightLossTrackerAPI">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Album.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicResource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Singer.java" afterDir="false" />
+    <list default="true" id="5f3a9732-35a5-4a4c-8bc4-580f904242f7" name="Changes" comment="Changed weightTracker to musicAPI instead">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/user/UserDetailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/user/UserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/user/UserDetailsCommandLineRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/user/UserDetailsRestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/weightLossTrackerAPI/Person.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/weightLossTrackerAPI/Weeks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/MatchHistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/matchHistoryAPI/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/MusicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Singer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/genspark/Application/musicAlbumAPI/Singer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +73,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\SpringBoot\RestfulAPIGenSpark\src\main\java\com\genspark\Application" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -160,7 +167,9 @@
       <workItem from="1660752048528" duration="3630000" />
       <workItem from="1660764911381" duration="100000" />
       <workItem from="1660838595781" duration="4333000" />
-      <workItem from="1660919705022" duration="5213000" />
+      <workItem from="1660919705022" duration="6805000" />
+      <workItem from="1660936391669" duration="5554000" />
+      <workItem from="1661146826226" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="In progress">
       <created>1660605795261</created>
@@ -232,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660755088547</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changed weightTracker to musicAPI instead">
+      <created>1660926611237</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1660926611237</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +274,7 @@
     <MESSAGE value="added RequestMethod.PUT" />
     <MESSAGE value="valorant esqueAPI is done, on the next one." />
     <MESSAGE value="starting weightLossTrackerAPI" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting weightLossTrackerAPI" />
+    <MESSAGE value="Changed weightTracker to musicAPI instead" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed weightTracker to musicAPI instead" />
   </component>
 </project>

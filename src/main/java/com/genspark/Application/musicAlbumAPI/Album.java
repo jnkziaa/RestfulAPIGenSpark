@@ -23,7 +23,7 @@ public class Album {
     }
 
     public void setId(String id) {
-        id = id;
+        this.id = id;
     }
 
     public String getAlbumName() {

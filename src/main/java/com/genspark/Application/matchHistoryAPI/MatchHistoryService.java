@@ -10,7 +10,6 @@ public class MatchHistoryService {
 
     private static List<MatchHistory> matchHistoryArrayList = new ArrayList<>();
     private static List<Matches> matchesList;
-    private static List<Matches> matchesList2;
 
 
     /**
@@ -34,9 +33,9 @@ public class MatchHistoryService {
         Matches match7 = new Matches("Match 3", "Split", Arrays.asList("numaer1", "polars2", "kushi", "Ninjin", "water15"), 17, "Lose", -25);
         Matches match8 = new Matches("Match 4", "Breeze", Arrays.asList("nuers", "hytsta", "dica", "Ninjin", "westLost"), 15, "Win", 21);
         Matches match9 = new Matches("Match 5", "Fracture", Arrays.asList("lostaw12", "reasff", "mioasf", "yuanes", "Ninjin"), 32, "Win", 25);
-        matchesList2 = new ArrayList<>(Arrays.asList(match5, match6, match7, match8, match9));
-        totalPoints = matchesList2.stream().map(Matches::getPointsGained).reduce(0, Integer::sum);
-        MatchHistory matchHistory2 = new MatchHistory("Player 2","Ninjin", totalPoints, "Initiator", matchesList2);
+        matchesList = new ArrayList<>(Arrays.asList(match5, match6, match7, match8, match9));
+        totalPoints = matchesList.stream().map(Matches::getPointsGained).reduce(0, Integer::sum);
+        MatchHistory matchHistory2 = new MatchHistory("Player 2","Ninjin", totalPoints, "Initiator", matchesList);
         matchHistoryArrayList.add(matchHistory2);
     }
 
@@ -50,7 +49,6 @@ public class MatchHistoryService {
 
     /**
      * retrieves matchHistory through the ID taken from the URL
-     * @param matchHistoryId
      * @return
      */
     public MatchHistory retrieveMatchHistoryById(String matchHistoryId) {
@@ -106,7 +104,7 @@ public class MatchHistoryService {
      */
     public String addNewMatches(String matchHistoryId, Matches matches) {
         List<Matches> newMatchList = retrieveAllMatchesInHistory(matchHistoryId);
-        int idTracker = Integer.parseInt(newMatchList.get(newMatchList.size()-1).getId().substring(6,7)) + 1;
+        int idTracker = Integer.parseInt(newMatchList.get(newMatchList.size()-1).getId().substring(6)) + 1;
         String actualMatchId = "Match " + idTracker;
         matches.setId(actualMatchId);
         newMatchList.add(matches);
